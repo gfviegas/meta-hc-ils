@@ -39,21 +39,29 @@ defmodule Meta.HillClimbing.Solver do
   end
 
   @impl true
-  def handle_call(:start_solve, _from, state) do
+  def handle_call(:start_solve, from, state) do
     Logger.info("Inicializando processo de convergência...")
-    {:reply, state.solution, state, {:continue, :next_iteration}}
+
+    state = %State{state | pid: from}
+    Logger.info("Solução final: #{state.solution.value}")
+    {:noreply, state, {:continue, :next_iteration}}
   end
 
   @impl true
   def handle_continue(:next_iteration, state = %State{no_progress_iterations: i, max_consecutive_no_progress_iterations: i}) do
     Logger.info("Processo finalizado por máximo de iterações sem evolução!")
-    {:noreply, state}
-  end
-  def handle_continue(:next_iteration, state = %State{current_iteration: i, max_iterations: i}) do
-    Logger.info("Processo finalizado por máximo de iterações!")
+    GenServer.reply(state.pid, state.solution)
     {:noreply, state}
   end
 
+  @impl true
+  def handle_continue(:next_iteration, state = %State{current_iteration: i, max_iterations: i}) do
+    Logger.info("Processo finalizado por máximo de iterações!")
+    GenServer.reply(state.pid, state.solution)
+    {:noreply, state}
+  end
+
+  @impl true
   def handle_continue(:next_iteration, state = %State{current_iteration: i}) do
     Logger.info("Iteração ##{i}")
 
@@ -113,19 +121,12 @@ defmodule Meta.HillClimbing.Solver do
   @spec tweak_variable(Variable.t(), float()) :: Variable.t()
   def tweak_variable(variable = %Variable{value: value, constraint: constraint}, noise_size) do
     %Constraint{higher_boundary: constraint_hb, lower_boundary: constraint_lb} = constraint
-    noise = if :rand.uniform() > 0.5 do noise_size else -noise_size end
 
-    hb =
-      (constraint_hb - value)
-      |> min(noise)
-      |> abs()
-
-    lb =
-      (value - constraint_lb)
-      |> min(noise)
-      |> abs()
+    hb = if abs(constraint_hb - value) < abs(noise_size) do (constraint_hb - value) else noise_size end
+    lb = if abs(value - constraint_lb) < abs(noise_size) do -(value - constraint_lb) else -noise_size end
 
     random_delta = (hb - lb) * :rand.uniform() + lb
+    Logger.info(delta: random_delta, hb: hb, lb: lb, value: value)
     %Variable{variable | value: value + random_delta}
   end
 

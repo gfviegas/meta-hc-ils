@@ -30,6 +30,7 @@ defmodule Meta.HillClimbing.State do
           no_progress_iterations: non_neg_integer()
         }
   defstruct [
+    :pid,
     :objective,
     :solution,
     :current_iteration,
