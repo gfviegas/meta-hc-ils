@@ -1,0 +1,14 @@
+version: "3.7"
+
+services:
+  tp1:
+    image: meta_tp1:latest
+    container_name: meta_tp1
+    build:
+      context: .
+    working_dir: /code
+    volumes:
+      - ./:/code
+      - /code/deps
+      - /code/_build
+      - /code/.elixir_ls
