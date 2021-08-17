@@ -25,4 +25,5 @@ code-*.tar
 # Temporary files, for example, from tests.
 /tmp/
 
-*.log
+runs/*.json
+runs/*.log

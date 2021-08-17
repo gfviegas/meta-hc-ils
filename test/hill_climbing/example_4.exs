@@ -2,24 +2,24 @@ alias Meta.HillClimbing.Solver
 alias Meta.Problem
 
 {:ok, file} =
-  File.open("./runs/example_2_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
+  File.open("./runs/example_4_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
 
 options = [
   problem: %Problem{
-    objective: &Meta.Functions.example_one/2,
+    objective: &Meta.Functions.example_two/2,
     variables: [
       %Problem.Variable{
         name: :x,
-        constraint: %Problem.Constraint{lower_boundary: -1, higher_boundary: 0}
+        constraint: %Problem.Constraint{lower_boundary: 511, higher_boundary: 512}
       },
       %Problem.Variable{
         name: :y,
-        constraint: %Problem.Constraint{lower_boundary: -2, higher_boundary: -1}
+        constraint: %Problem.Constraint{lower_boundary: 404, higher_boundary: 405}
       }
     ],
   },
   noise_size: 0.05,
-  max_iterations: 200,
+  max_iterations: 500,
   max_consecutive_no_progress_iterations: 50
 ]
 
