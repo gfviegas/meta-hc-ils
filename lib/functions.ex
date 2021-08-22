@@ -18,6 +18,6 @@ defmodule Meta.Functions do
     |> Math.sqrt()
     |> Math.sin()
 
-    (-(y + 47) * termA) - (x * termB)
+    -(((y + 47) * termA) - (x * termB))
   end
 end

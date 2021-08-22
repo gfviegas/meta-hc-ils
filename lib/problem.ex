@@ -34,17 +34,57 @@ defmodule Meta.Problem do
     }
   end
 
-  @spec generate_random_variable_value(Variable.t()) :: Variable.t()
-  def generate_random_variable_value(variable = %Variable{constraint: constraint}) do
+  @spec maybe_generate_random_variable_value(Variable.t()) :: Variable.t()
+  def maybe_generate_random_variable_value(variable = %Variable{constraint: constraint, value: nil}) do
     %Constraint{higher_boundary: hb, lower_boundary: lb} = constraint
     random_value = (hb - lb) * :rand.uniform() + lb
     %Variable{variable | value: random_value}
   end
+  def maybe_generate_random_variable_value(variable = %Variable{constraint: _constraint, value: _v}), do: variable
 
-  @spec generate_random_solution(fun(), [Variable.t()]) :: Solution.t()
-  def generate_random_solution(objective, variables) do
-    # Gera números randômicos para cada variável
-    fetch_solution(objective, variables)
+  def maybe_tweak_variable(variable = %Variable{}, probability, noise_sizes)
+      when probability <= 1 and probability >= 0 do
+    if :rand.uniform() < probability do
+      noise_size = Enum.find_value(noise_sizes, fn {name, value} ->
+        if name == variable.name, do: value
+      end)
+
+      tweak_variable(variable, noise_size)
+    else
+      # Retorna a variável como está se a probabilidade não atingir o valor esperado
+      variable
+    end
+  end
+
+  def maybe_tweak_variable(_variable, _probability, _noise),
+    do: raise("Invalid probability given")
+
+  @spec tweak_variable(Variable.t(), float()) :: Variable.t()
+  def tweak_variable(
+        variable = %Variable{value: value, constraint: constraint},
+        noise_size
+      ) do
+    %Constraint{higher_boundary: constraint_hb, lower_boundary: constraint_lb} =
+      constraint
+
+    noise = abs(value * noise_size)
+
+    hb =
+      if abs(constraint_hb - value) < abs(noise) do
+        constraint_hb - value
+      else
+        noise
+      end
+
+    lb =
+      if abs(value - constraint_lb) < abs(noise) do
+        -(value - constraint_lb)
+      else
+        -noise
+      end
+
+    random_delta = (hb - lb) * :rand.uniform() + lb
+    %Variable{variable | value: value + random_delta}
   end
 
   @spec is_better?(Solution.t(), Solution.t(), atom) :: boolean()

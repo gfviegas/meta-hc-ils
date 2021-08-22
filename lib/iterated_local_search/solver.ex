@@ -1,9 +1,10 @@
-defmodule Meta.HillClimbing.Solver do
+defmodule Meta.IteratedLocalSearch.Solver do
   require Logger
 
   use GenServer
-  alias Meta.HillClimbing.State
+  alias Meta.IteratedLocalSearch.State
   alias Meta.Problem
+  alias Meta.HillClimbing
 
   # Client
   def setup(opts) when is_list(opts) do
@@ -67,9 +68,13 @@ defmodule Meta.HillClimbing.Solver do
          new_variables <-
            Enum.map(
              state.problem.variables,
-             &Problem.maybe_tweak_variable(&1, state.tweak_probability, state.noise_sizes)
-           ),
-         solution <- Problem.fetch_solution(state.problem.objective, new_variables) do
+             fn problem = %Problem.Variable{name: name} ->
+                noise_sizes = [{name, state.pertubation_size}]
+                Problem.maybe_tweak_variable(problem, 1,  noise_sizes)
+             end),
+         hc_setup = Keyword.merge(state.hc_options, [problem: %Problem{problem | variables: new_variables}]),
+         {:ok, hc_pid} <- HillClimbing.Solver.setup(hc_setup),
+         solution <- HillClimbing.Solver.solve(hc_pid) do
       Logger.info("Solução ##{i}: #{inspect(solution)}")
 
       is_solution_better? = Problem.is_better?(solution, problem.solution, problem.type)

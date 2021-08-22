@@ -1,12 +1,22 @@
-defmodule Meta.HillClimbing.State do
+defmodule Meta.IteratedLocalSearch.State do
   alias Meta.Problem
 
-  @enforce_keys [:problem, :noise_sizes]
+  defmodule HillClimbingOptions do
+    @enforce_keys [:noise_sizes]
+    defstruct [
+      :noise_sizes,
+      tweak_probability: 1,
+      max_iterations: 50,
+      max_consecutive_no_progress_iterations: 10,
+    ]
+  end
+
+  @enforce_keys [:problem, :hc_options]
   @type t :: %__MODULE__{
           pid: pid,
           problem: Problem.t(),
-          noise_sizes: [{atom(), float()}],
-          tweak_probability: float(),
+          hc_options: HillClimbingOptions.t(),
+          pertubation_size: float(),
           max_iterations: non_neg_integer(),
           current_iteration: non_neg_integer(),
           max_consecutive_no_progress_iterations: non_neg_integer(),
@@ -16,8 +26,8 @@ defmodule Meta.HillClimbing.State do
     :pid,
     :problem,
     :current_iteration,
-    :noise_sizes,
-    tweak_probability: 1,
+    :hc_options,
+    pertubation_size: 0.1,
     max_iterations: 50,
     max_consecutive_no_progress_iterations: 10,
     no_progress_iterations: 0

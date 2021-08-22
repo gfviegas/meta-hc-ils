@@ -1,8 +1,8 @@
-alias Meta.HillClimbing.Solver
+alias Meta.IteratedLocalSearch.Solver
 alias Meta.Problem
 
 {:ok, file} =
-  File.open("./runs/hc/ex_4_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
+  File.open("./runs/ils/ex_4_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
 
 options = [
   problem: %Problem{
@@ -18,8 +18,13 @@ options = [
       }
     ],
   },
-  noise_sizes: [x: 0.25, y: 0.25],
-  max_iterations: 500,
+  hc_options: [
+    noise_sizes: [x: 0.25, y: 0.25],
+    max_iterations: 200,
+    max_consecutive_no_progress_iterations: 2
+  ],
+  pertubation_size: 0.5,
+  max_iterations: 200,
   max_consecutive_no_progress_iterations: 50
 ]
 

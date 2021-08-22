@@ -2,7 +2,7 @@ alias Meta.HillClimbing.Solver
 alias Meta.Problem
 
 {:ok, file} =
-  File.open("./runs/example_1_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
+  File.open("./runs/hc/ex_1_#{DateTime.now!("Etc/UTC") |> DateTime.to_iso8601()}.json", [:append])
 
 options = [
   problem: %Problem{
@@ -18,7 +18,7 @@ options = [
       }
     ],
   },
-  noise_size: 0.05,
+  noise_sizes: [x: 0.25, y: 0.25],
   max_iterations: 200,
   max_consecutive_no_progress_iterations: 50
 ]
