@@ -15,11 +15,17 @@ defmodule Meta.Functions do
     Math.pow(x, 2)
   end
 
+  @doc """
+  A multimodal function, see the main page for more`.
+  """
   @spec example_one(number, number) :: float
   def example_one(x, y) do
     Math.sin(x + y) + Math.pow(x - y, 2) - 1.5 * x + 2.5 * y + 1
   end
 
+  @doc """
+  A multimodal function, see the main page for more`.
+  """
   @spec example_two(number, number) :: float
   def example_two(x, y) do
     termA =

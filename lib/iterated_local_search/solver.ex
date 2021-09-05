@@ -1,4 +1,5 @@
 defmodule Meta.IteratedLocalSearch.Solver do
+  @moduledoc false
   require Logger
 
   use GenServer

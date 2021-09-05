@@ -1,6 +1,6 @@
 defmodule Meta.Problem do
   @moduledoc """
-  Definition of a arbitrary optimization problem to be solved using meta-heuristics.
+  Definition of an arbitrary optimization problem to be solved using meta-heuristics.
 
   To use a problem definition you must provide the `variables` list and the `objective` function.
   The `objective` arity must match the `variables` length and must be placed in a sorted order as the function must be called.

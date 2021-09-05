@@ -1,4 +1,5 @@
 defmodule Meta.IteratedLocalSearch.State do
+  @moduledoc false
   alias Meta.Problem
 
   defmodule HillClimbingOptions do

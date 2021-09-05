@@ -1,4 +1,5 @@
 defmodule Meta.HillClimbing.State do
+  @moduledoc false
   alias Meta.Problem
 
   @enforce_keys [:problem, :noise_sizes]

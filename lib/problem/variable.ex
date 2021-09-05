@@ -1,4 +1,9 @@
 defmodule Meta.Problem.Variable do
+  @moduledoc """
+  Definition of an arbitrary problem variable.
+
+  The `name` is used in problem-solving meta-heuristics algorithms and the `constraint` key is used to respect the boundaries of a problem.
+  """
   alias Meta.Problem.Constraint
 
   @derive Jason.Encoder

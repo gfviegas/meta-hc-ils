@@ -1,4 +1,5 @@
 defmodule Meta.HillClimbing.Solver do
+  @moduledoc false
   require Logger
 
   use GenServer
