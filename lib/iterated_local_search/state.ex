@@ -7,7 +7,7 @@ defmodule Meta.IteratedLocalSearch.State do
       :noise_sizes,
       tweak_probability: 1,
       max_iterations: 50,
-      max_consecutive_no_progress_iterations: 10,
+      max_consecutive_no_progress_iterations: 10
     ]
   end
 

@@ -20,7 +20,8 @@ defmodule Meta.HillClimbing.Solver do
     Logger.info("Registrando problema...")
 
     with problem = %Problem{} <- opts[:problem],
-         variables <- Enum.map(problem.variables, &Problem.maybe_generate_random_variable_value/1),
+         variables <-
+           Enum.map(problem.variables, &Problem.maybe_generate_random_variable_value/1),
          initial_solution <- Problem.fetch_solution(problem.objective, variables) do
       Logger.info("Solução inicial: #{inspect(initial_solution)}")
 
