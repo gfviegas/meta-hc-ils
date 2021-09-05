@@ -3,6 +3,7 @@ defmodule Meta.IteratedLocalSearch.State do
   alias Meta.Problem
 
   defmodule HillClimbingOptions do
+    @moduledoc false
     @enforce_keys [:noise_sizes]
     defstruct [
       :noise_sizes,
