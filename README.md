@@ -1,21 +1,17 @@
-# Meta
+# HillClimbing and Iterated Local Search solver
+This project is an academic implementation of both HillClimbing (HC) and Iterated Local Search (ILS) for meta-heuristics learning purposes.
 
-**TODO: Add description**
+Both heuristics benefits from shared `Meta.Problem` module and it's inner types.
 
-## Installation
+Benchmarks were conducted using the `Meta.Functions.example_one` and `Meta.Functions.example_two` equations and more info is provided in the [Benchmarks Page](benchmarks.md).
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `code` to your list of dependencies in `mix.exs`:
-
-```elixir
-def deps do
-  [
-    {:code, "~> 0.1.0"}
-  ]
-end
+[Full Documentation](https://gfviegas.github.io/meta-hc-ils/)
+## Running
+A `Dockerfile` and `docker-compose.yml` files is provided in this project for quick setup and run:
+```bash
+docker-compose run tp1
 ```
 
-Documentation can be generated with [ExDoc](https://github.com/elixir-lang/ex_doc)
-and published on [HexDocs](https://hexdocs.pm). Once published, the docs can
-be found at [https://hexdocs.pm/code](https://hexdocs.pm/code).
+The default entrypoint is the running of all benchmarks problems, which can then be further analysed in the `benchmarks/analysis.ipynb` notebook.
+
 

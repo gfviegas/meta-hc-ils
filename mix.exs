@@ -15,7 +15,7 @@ defmodule Meta.MixProject do
       docs: [
         # The main page in the docs
         main: "readme",
-        extras: ["README.md"]
+        extras: ["README.md", "benchmarks.md"]
       ]
     ]
   end

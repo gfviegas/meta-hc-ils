@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="generator" content="ExDoc v0.25.2">
+    <meta name="project" content="TP I v0.1.0">
+
+    <title>Benchmarks — TP I v0.1.0</title>
+    <link rel="stylesheet" href="dist/elixir-37545fd2f35b96531434.css" />
+
+    <script src="dist/sidebar_items-c020f77b37.js"></script>
+
+      <script src="docs_config.js"></script>
+
+    <script async src="dist/app-f97730d45ef67f3e6188.js"></script>
+
+
+  </head>
+  <body data-type="extras">
+    <script>
+
+      try {
+        if (localStorage.getItem('night-mode') === 'true') {
+          document.body.classList.add('night-mode');
+        }
+      } catch (error) { }
+    </script>
+
+<div class="main">
+
+<button class="sidebar-button sidebar-toggle">
+  <span class="icon-menu" title="Collapse/expand sidebar"></span>
+</button>
+
+<section class="sidebar">
+  <form class="sidebar-search" action="search.html">
+    <button type="submit" class="search-button" aria-label="Submit Search">
+      <span class="icon-search" aria-hidden="true" title="Submit search"></span>
+    </button>
+    <button type="button" tabindex="-1" class="search-close-button" aria-label="Cancel Search">
+      <span class="icon-cross" aria-hidden="true" title="Cancel search"></span>
+    </button>
+    <label class="search-label">
+      <input name="q" type="text" class="search-input" placeholder="Search..." aria-label="Input your search terms" autocomplete="off" />
+    </label>
+  </form>
+
+  <div class="autocomplete">
+    <div class="autocomplete-results">
+    </div>
+  </div>
+
+  <div class="sidebar-header">
+    <div class="sidebar-projectDetails">
+      <a href="https://gfviegas.github.io/meta-hc-ils" class="sidebar-projectName">
+TP I
+      </a>
+      <strong class="sidebar-projectVersion">
+        v0.1.0
+      </strong>
+    </div>
+
+  </div>
+
+  <ul class="sidebar-listNav">
+    <li><a id="extras-list-link" href="#full-list">Pages</a></li>
+
+      <li><a id="modules-list-link" href="#full-list">Modules</a></li>
+
+
+  </ul>
+  <div class="gradient"></div>
+  <ul id="full-list" class="sidebar-fullList"></ul>
+</section>
+
+<section class="content">
+  <div class="content-outer">
+    <div id="content" class="content-inner">
+
+<h1>Benchmarks</h1><p>This page provides the benchmark results for two multimodals problems, running in two different constraints setup and with both ILS and HC algorithms.</p><h2 id="benchmark-1" class="section-heading">
+  <a href="#benchmark-1" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Benchmark 1
+</h2>
+<p>This benchmark problem uses the <code class="inline">Meta.Functions.example_one</code> function, also shown in the image below.</p><p><img src="./images/equation1.png" alt="Equation 1"/></p><p>30 individual runs was executed under two different setups: <a href="#configuration-1-a">Configuration 1.a</a> with more relaxed variable constraints and <a href="#configuration-1-b">Configuration 1.b</a> with a less relaxed constraints.</p><h3 id="configuration-1-a" class="section-heading">
+  <a href="#configuration-1-a" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Configuration <strong>1.a</strong>
+</h3>
+<p>This setting had the following constraints on variables:</p><ul><li>−1.5 ≤ 𝑥 ≤ 4</li><li>−3 ≤ 𝑦 ≤ 4</li></ul><h4>Hill Climbing Parameters</h4><ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li></ul><h4>Iterated Local Search Parameters</h4><ul><li>Perturbation size (step size): 0.5</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li><li>Local search algorithm: Hill Climbing, with:<ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 2</li></ul></li></ul><h4>Results and Discussion</h4><p>The 30 independent individual executions results ran is shown in the table below:</p><table><thead><tr><th style="text-align: left;">Algorithm</th><th style="text-align: left;">Minimum</th><th style="text-align: left;">Maximum</th><th style="text-align: left;">Mean Average</th><th style="text-align: left;">Std. Deviation</th></tr></thead><tbody><tr><td style="text-align: left;">HC</td><td style="text-align: left;">-1.913115</td><td style="text-align: left;">1.240485</td><td style="text-align: left;">-0.264049</td><td style="text-align: left;">1.436836</td></tr><tr><td style="text-align: left;">ILS</td><td style="text-align: left;">-1.910092</td><td style="text-align: left;">1.510261</td><td style="text-align: left;">0.433561</td><td style="text-align: left;">1.215818</td></tr></tbody></table><p>The boxplot for both executions is also shown in the image below:</p><p><img src="./images/boxplot_1a.jpg" alt="Boxplot 1-a"/></p><p>The results shows a good overall performance by HC since it's variety is not as good as the ILS. Since the ILS algorithms tends to change its attraction roundabouts, the mean average its way poorer, but the minum value found, hence the best overall result, is better than the one found in the HC. For overall experience of the author, these stats is not the preferable choices, since the random pattern behaviour of both approaches tends to have outliers that never leaves its local minimums/maximums. A good statistical choice would be the median and/or the median average deviation instead of the mean and standard deivation.</p><p>The results overall, are expected, but a little too far off the mean average for ILS, which suggests a perturbation size not optimal, that was choice empiracally and not changed for academic results. </p><h3 id="configuration-1-b" class="section-heading">
+  <a href="#configuration-1-b" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Configuration <strong>1.b</strong>
+</h3>
+<p>This setting had the following constraints on variables:</p><ul><li>−1 ≤ 𝑥 ≤ 0</li><li>−2 ≤ 𝑦 ≤ 1</li></ul><h4>Hill Climbing Parameters</h4><ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li></ul><h4>Iterated Local Search Parameters</h4><ul><li>Perturbation size (step size): 0.5</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li><li>Local search algorithm: Hill Climbing, with:<ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 2</li></ul></li></ul><h4>Results and Discussion</h4><p>The 30 independent individual executions results ran is shown in the table below:</p><table><thead><tr><th style="text-align: left;">Algorithm</th><th style="text-align: left;">Minimum</th><th style="text-align: left;">Maximum</th><th style="text-align: left;">Mean Average</th><th style="text-align: left;">Std. Deviation</th></tr></thead><tbody><tr><td style="text-align: left;">HC</td><td style="text-align: left;">-1.913168</td><td style="text-align: left;">-1.906510</td><td style="text-align: left;">-1.912136</td><td style="text-align: left;">0.001312</td></tr><tr><td style="text-align: left;">ILS</td><td style="text-align: left;">-1.913215</td><td style="text-align: left;">-1.910281</td><td style="text-align: left;">-1.912661</td><td style="text-align: left;">0.000619</td></tr></tbody></table><p>The boxplot for both executions is also shown in the image below:</p><p><img src="./images/boxplot_1b.jpg" alt="Boxplot 1-b"/></p><p>The results shows a better mean average, minimum and maximum result for ILS as it's expected, since the randomness is reduced in a smaller search space and also tends to converge faster in a more robust environment. 
+Nothing too particular to note here, just that ILS is a better approach towards these kind of algorithms than HC alone, as we can see in the results table and boxplot.</p><h2 id="benchmark-2" class="section-heading">
+  <a href="#benchmark-2" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Benchmark 2
+</h2>
+<p>This benchmark problem uses the <code class="inline">Meta.Functions.example_two</code> function, also shown in the image below.</p><p><img src="./images/equation2.png" alt="Equation 2"/></p><p>30 individual runs was executed under two different setups: <a href="#configuration-2-a">Configuration 2.a</a> with more relaxed variable constraints and <a href="#configuration-2-b">Configuration 2.b</a> with a less relaxed constraints.</p><h3 id="configuration-2-a" class="section-heading">
+  <a href="#configuration-2-a" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Configuration <strong>2.a</strong>
+</h3>
+<p>This setting had the following constraints on variables:</p><ul><li>−512 ≤ 𝑥 ≤ 512</li><li>−512 ≤ 𝑦 ≤ 512</li></ul><h4>Hill Climbing Parameters</h4><ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 500</li><li>Max consecutive iterations without improvements allowed: 50</li></ul><h4>Iterated Local Search Parameters</h4><ul><li>Perturbation size (step size): 0.5</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li><li>Local search algorithm: Hill Climbing, with:<ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 2</li></ul></li></ul><h4>Results and Discussion</h4><p>The 30 independent individual executions results ran is shown in the table below:</p><table><thead><tr><th style="text-align: left;">Algorithm</th><th style="text-align: left;">Minimum</th><th style="text-align: left;">Maximum</th><th style="text-align: left;">Mean Average</th><th style="text-align: left;">Std. Deviation</th></tr></thead><tbody><tr><td style="text-align: left;">HC</td><td style="text-align: left;">-948.285209</td><td style="text-align: left;">-110.811574</td><td style="text-align: left;">-507.114183</td><td style="text-align: left;">245.121166</td></tr><tr><td style="text-align: left;">ILS</td><td style="text-align: left;">-923.058723</td><td style="text-align: left;">-200.301893</td><td style="text-align: left;">-571.793068</td><td style="text-align: left;">191.732634</td></tr></tbody></table><p>The boxplot for both executions is also shown in the image below:</p><p><img src="./images/boxplot_2a.jpg" alt="Boxplot 2-a"/></p><p>This is where ILS tends to shine brighter! The harder the problem, the better are the results. ILS tops HC in almost all aspects, specially in std deviation, which suggests less randomness than HC, and a best minimum performance by HC suggests just a bare luck in picking a specially good attraction area by randomness since the maximum and std deviation lacks so much from the ILS runs.</p><h3 id="configuration-2-b" class="section-heading">
+  <a href="#configuration-2-b" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Configuration <strong>2.b</strong>
+</h3>
+<p>This setting had the following constraints on variables:</p><ul><li>−511 ≤ 𝑥 ≤ 512</li><li>-404 ≤ 𝑦 ≤ 405</li></ul><h4>Hill Climbing Parameters</h4><ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 500</li><li>Max consecutive iterations without improvements allowed: 50</li></ul><h4>Iterated Local Search Parameters</h4><ul><li>Perturbation size (step size): 0.5</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 50</li><li>Local search algorithm: Hill Climbing, with:<ul><li>Noise size (step size): 0.25 for both variables</li><li>Stop cyteria: max iterations or max consecutives iterations without improvements</li><li>Max iterations allowed: 200</li><li>Max consecutive iterations without improvements allowed: 2</li></ul></li></ul><h4>Results and Discussion</h4><p>The 30 independent individual executions results ran is shown in the table below:</p><table><thead><tr><th style="text-align: left;">Algorithm</th><th style="text-align: left;">Minimum</th><th style="text-align: left;">Maximum</th><th style="text-align: left;">Mean Average</th><th style="text-align: left;">Std. Deviation</th></tr></thead><tbody><tr><td style="text-align: left;">HC</td><td style="text-align: left;">-959.631515</td><td style="text-align: left;">-959.388812</td><td style="text-align: left;">-959.552555</td><td style="text-align: left;">0.067009</td></tr><tr><td style="text-align: left;">ILS</td><td style="text-align: left;">-959.636417</td><td style="text-align: left;">-959.517764</td><td style="text-align: left;">-959.601634</td><td style="text-align: left;">0.026641</td></tr></tbody></table><p>The boxplot for both executions is also shown in the image below:</p><p><img src="./images/boxplot_2b.jpg" alt="Boxplot 2-b"/></p><p>Although really near the HC results, ILS performes better in every aspects measured. It is known a smaller search space tends to prevent early convergence for both approaches, but ILS is specially better in the std. deviation results in this benchakrk, which is somehow odd since the smaller search space tends to benefit the HC algorithm as the local minimum values probability to be the global minimum one in the domain is way better. Yet again, a better std. deviation result for ILS compared to HC in this benchmark tends to show the <code class="inline">2.a</code> parameters could be better tuned to favor ILS, as its way more powerful than HC alone but yet has closer or even worse results depending on the way you see it.</p>
+<div class="bottom-actions">
+  <div class="bottom-actions-item">
+
+      <a href="readme.html" class="bottom-actions-button" rel="prev">
+        <span class="subheader">
+          ← Previous Page
+        </span>
+        <span class="title">
+HillClimbing and Iterated Local Search solver
+        </span>
+      </a>
+
+  </div>
+  <div class="bottom-actions-item">
+
+  </div>
+</div>
+
+      <footer class="footer">
+
+        <p>
+          <span class="line">
+            Built using
+            <a href="https://github.com/elixir-lang/ex_doc" title="ExDoc" target="_blank" rel="help noopener">ExDoc</a> (v0.25.2) for the
+            <a href="https://elixir-lang.org" title="Elixir" target="_blank">Elixir programming language</a>.
+          </span>
+          <span class="line">
+            Designed by
+            <a href="https://twitter.com/dignifiedquire" target="_blank" rel="noopener" title="@dignifiedquire">Friedel Ziegelmayer</a>.
+          </span>
+        </p>
+        <p>
+
+            <a href="api-reference.html" title="API reference" class="line footer-button">API Reference</a>
+
+          <button class="line footer-button display-shortcuts-help">
+            Display keyboard shortcuts
+          </button>
+          <button class="line footer-button night-mode-toggle">
+            Toggle night mode
+          </button>
+          <button class="line footer-button display-quick-switch">
+            Go to a HexDocs package
+          </button>
+          <button class="line footer-button tooltips-toggle">
+            <span class="tooltips-option-disable">Disable tooltips</span>
+            <span class="tooltips-option-enable">Enable tooltips</span>
+          </button>
+        </p>
+      </footer>
+    </div>
+  </div>
+</section>
+</div>
+
+
+  </body>
+</html>

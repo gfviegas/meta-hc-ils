@@ -16,7 +16,10 @@ defmodule Meta.Functions do
   end
 
   @doc """
-  A multimodal function, see the main page for more`.
+  A multimodal function.
+
+  ![Equation 1](./images/equation1.png)
+
   """
   @spec example_one(number, number) :: float
   def example_one(x, y) do
@@ -24,7 +27,9 @@ defmodule Meta.Functions do
   end
 
   @doc """
-  A multimodal function, see the main page for more`.
+  A multimodal function.
+
+  ![Equation 2](./images/equation2.png)
   """
   @spec example_two(number, number) :: float
   def example_two(x, y) do

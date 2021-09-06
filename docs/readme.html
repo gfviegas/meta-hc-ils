@@ -7,10 +7,10 @@
     <meta name="generator" content="ExDoc v0.25.2">
     <meta name="project" content="TP I v0.1.0">
 
-    <title>Meta — TP I v0.1.0</title>
+    <title>HillClimbing and Iterated Local Search solver — TP I v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-37545fd2f35b96531434.css" />
 
-    <script src="dist/sidebar_items-ff316fda0b.js"></script>
+    <script src="dist/sidebar_items-c020f77b37.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -79,18 +79,12 @@ TP I
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>Meta</h1><p><strong>TODO: Add description</strong></p><h2 id="installation" class="section-heading">
-  <a href="#installation" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Installation
+<h1>HillClimbing and Iterated Local Search solver</h1><p>This project is an academic implementation of both HillClimbing (HC) and Iterated Local Search (ILS) for meta-heuristics learning purposes.</p><p>Both heuristics benefits from shared <a href="Meta.Problem.html"><code class="inline">Meta.Problem</code></a> module and it's inner types.</p><p>Benchmarks were conducted using the <code class="inline">Meta.Functions.example_one</code> and <code class="inline">Meta.Functions.example_two</code> equations and more info is provided in the <a href="benchmarks.html">Benchmarks Page</a>.</p><p><a href="https://gfviegas.github.io/meta-hc-ils/">Full Documentation</a></p><h2 id="running" class="section-heading">
+  <a href="#running" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Running
 </h2>
-<p>If <a href="https://hex.pm/docs/publish">available in Hex</a>, the package can be installed
-by adding <code class="inline">code</code> to your list of dependencies in <code class="inline">mix.exs</code>:</p><pre><code class="makeup elixir"><span class="kd">def</span><span class="w"> </span><span class="nf">deps</span><span class="w"> </span><span class="k" data-group-id="0207923471-1">do</span><span class="w">
-  </span><span class="p" data-group-id="0207923471-2">[</span><span class="w">
-    </span><span class="p" data-group-id="0207923471-3">{</span><span class="ss">:code</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;~&gt; 0.1.0&quot;</span><span class="p" data-group-id="0207923471-3">}</span><span class="w">
-  </span><span class="p" data-group-id="0207923471-2">]</span><span class="w">
-</span><span class="k" data-group-id="0207923471-1">end</span></code></pre><p>Documentation can be generated with <a href="https://github.com/elixir-lang/ex_doc">ExDoc</a>
-and published on <a href="https://hexdocs.pm">HexDocs</a>. Once published, the docs can
-be found at <a href="https://hexdocs.pm/code">https://hexdocs.pm/code</a>.</p>
+<p>A <code class="inline">Dockerfile</code> and <code class="inline">docker-compose.yml</code> files is provided in this project for quick setup and run:</p><pre><code class="makeup bash"><span class="">docker-compose run tp1
+</span></code></pre><p>The default entrypoint is the running of all benchmarks problems, which can then be further analysed in the <code class="inline">benchmarks/analysis.ipynb</code> notebook.</p>
 <div class="bottom-actions">
   <div class="bottom-actions-item">
 
@@ -105,6 +99,15 @@ API Reference
 
   </div>
   <div class="bottom-actions-item">
+
+      <a href="benchmarks.html" class="bottom-actions-button" rel="next">
+        <span class="subheader">
+          Next Page →
+        </span>
+        <span class="title">
+Benchmarks
+        </span>
+      </a>
 
   </div>
 </div>

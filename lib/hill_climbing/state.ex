@@ -1,5 +1,7 @@
 defmodule Meta.HillClimbing.State do
-  @moduledoc false
+  @moduledoc """
+  Describes a Genserver State for a HillClimbing run
+  """
   alias Meta.Problem
 
   @enforce_keys [:problem, :noise_sizes]

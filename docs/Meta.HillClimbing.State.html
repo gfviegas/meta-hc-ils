@@ -7,7 +7,7 @@
     <meta name="generator" content="ExDoc v0.25.2">
     <meta name="project" content="TP I v0.1.0">
 
-    <title>API Reference — TP I v0.1.0</title>
+    <title>Meta.HillClimbing.State — TP I v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-37545fd2f35b96531434.css" />
 
     <script src="dist/sidebar_items-c020f77b37.js"></script>
@@ -18,7 +18,7 @@
 
 
   </head>
-  <body data-type="extras">
+  <body data-type="modules">
     <script>
 
       try {
@@ -79,102 +79,98 @@ TP I
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>
-  API Reference <small class="app-vsn">TP I v0.1.0</small>
-</h1>
+      <h1>
+Meta.HillClimbing.State <small class="app-vsn">(TP I v0.1.0)</small>
 
-  <section class="details-list">
-    <h2 id="modules" class="section-heading">
-  <a href="#modules" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
-  Modules
-</h2>
+          <a href="https://github.com/gfviegas/meta-hc-ils/blob/master/lib/hill_climbing/state.ex#L1" title="View Source" class="view-source" rel="help">
+            <span class="icon-code" aria-hidden="true"></span>
+            <span class="sr-only">View Source</span>
+          </a>
 
-    <div class="summary">
+      </h1>
+
+
+        <section id="moduledoc">
+<p>Describes a Genserver State for a HillClimbing run</p>
+        </section>
+
+
+        <section id="summary" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#summary">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+            Summary
+          </h1>
+
+  <div class="summary-types summary">
+    <h2>
+      <a href="#types">Types</a>
+    </h2>
 <div class="summary-row">
   <div class="summary-signature">
-    <a href="Meta.Functions.html">Meta.Functions</a>
+    <a href="#t:t/0">t()</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Describes a collection of useful benchmark problems.</p></div>
-
 </div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.HillClimbing.Solver.html">Meta.HillClimbing.Solver</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Attempt to find a local maximum/minimum value using HillClimbing.</p></div>
+        </section>
 
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.HillClimbing.State.html">Meta.HillClimbing.State</a>
 
-  </div>
+        <section id="types" class="details-list">
+          <h1 class="section-heading">
+            <a class="hover-link" href="#types">
+              <span class="icon-link" aria-hidden="true"></span>
+              <span class="sr-only">Link to this section</span>
+            </a>
+Types
+          </h1>
+          <div class="types-list">
+<section class="detail" id="t:t/0">
 
-    <div class="summary-synopsis"><p>Describes a Genserver State for a HillClimbing run</p></div>
+  <div class="detail-header">
+    <a href="#t:t/0" class="detail-link" title="Link to this type">
+      <span class="icon-link" aria-hidden="true"></span>
+      <span class="sr-only">Link to this type</span>
+    </a>
+    <h1 class="signature">t()</h1>
 
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.Problem.html">Meta.Problem</a>
+      <a href="https://github.com/gfviegas/meta-hc-ils/blob/master/lib/hill_climbing/state.ex#L8" class="view-source" rel="help" title="View Source">
+       <span class="icon-code" aria-hidden="true"></span>
+       <span class="sr-only">View Source</span>
+     </a>
 
-  </div>
-
-    <div class="summary-synopsis"><p>Definition of an arbitrary optimization problem to be solved using meta-heuristics.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.Problem.Constraint.html">Meta.Problem.Constraint</a>
-
-  </div>
-
-    <div class="summary-synopsis"><p>Definition of an arbitrary variable constraints.</p></div>
-
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.Problem.Solution.html">Meta.Problem.Solution</a>
 
   </div>
 
-    <div class="summary-synopsis"><p>Definition of an arbitrary problem solution.</p></div>
+  <section class="docstring">
 
-</div>
-<div class="summary-row">
-  <div class="summary-signature">
-    <a href="Meta.Problem.Variable.html">Meta.Problem.Variable</a>
+      <h2>Specs</h2>
+      <div class="specs">
 
-  </div>
+          <pre>t() :: %Meta.HillClimbing.State{
+  current_iteration: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  max_consecutive_no_progress_iterations: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  max_iterations: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  no_progress_iterations: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">non_neg_integer</a>(),
+  noise_sizes: [{<a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">atom</a>(), <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()}],
+  pid: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">pid</a>(),
+  problem: <a href="Meta.Problem.html#t:t/0">Meta.Problem.t</a>(),
+  tweak_probability: <a href="https://hexdocs.pm/elixir/typespecs.html#basic-types">float</a>()
+}</pre>
 
-    <div class="summary-synopsis"><p>Definition of an arbitrary problem variable.</p></div>
+      </div>
 
-</div>
 
-    </div>
   </section>
+</section>
 
-
-<div class="bottom-actions">
-  <div class="bottom-actions-item">
-
-  </div>
-  <div class="bottom-actions-item">
-
-      <a href="readme.html" class="bottom-actions-button" rel="next">
-        <span class="subheader">
-          Next Page →
-        </span>
-        <span class="title">
-HillClimbing and Iterated Local Search solver
-        </span>
-      </a>
-
-  </div>
-</div>
+          </div>
+        </section>
 
       <footer class="footer">
 
