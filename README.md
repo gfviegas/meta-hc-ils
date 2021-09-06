@@ -6,6 +6,14 @@ Both heuristics benefits from shared `Meta.Problem` module and it's inner types.
 Benchmarks were conducted using the `Meta.Functions.example_one` and `Meta.Functions.example_two` equations and more info is provided in the [Benchmarks Page](benchmarks.md).
 
 [Full Documentation](https://gfviegas.github.io/meta-hc-ils/)
+
+## Code Implementation Details
+The algorithms were implemented using the Elixir language in a Mix project environment and ex-docs documentation and an ExUnit testing framework.
+All code source is open-source in the [github repository](https://github.com/gfviegas/meta-hc-ils).
+
+Also the [API Reference](https://gfviegas.github.io/meta-hc-ils/api-reference.html#modules) displays all kind of details in modules and structs implemented, as well as the module doc tests.
+
+Overall, the problems were implemented in a pure functional fashion using a `GenServer` and messages-to-self process for quick iteration and control over implementation. More details in the modules docs.
 ## Running
 A `Dockerfile` and `docker-compose.yml` files is provided in this project for quick setup and run:
 ```bash
