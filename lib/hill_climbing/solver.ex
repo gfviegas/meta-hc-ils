@@ -38,7 +38,7 @@ defmodule Meta.HillClimbing.Solver do
             max_iterations: 200,
             max_consecutive_no_progress_iterations: 50
           ]
-      iex> Meta.Solver.setup(opts)
+      iex> Meta.HillClimbing.Solver.setup(opts)
       {:ok, #PID<>}
   """
   @spec setup(keyword()) :: GenServer.on_start()
@@ -88,8 +88,8 @@ defmodule Meta.HillClimbing.Solver do
             max_iterations: 200,
             max_consecutive_no_progress_iterations: 50
           ]
-      iex> {:ok, pid} = Meta.Solver.setup(opts)
-      iex> Meta.Solver.solve(pid)
+      iex> {:ok, pid} = Meta.HillClimbing.Solver.setup(opts)
+      iex> Meta.HillClimbing.Solver.solve(pid)
       %Meta.Problem.Solution{
         value: 4.2071463961827206e-11,
         variables: [

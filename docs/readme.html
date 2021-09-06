@@ -7,10 +7,10 @@
     <meta name="generator" content="ExDoc v0.25.2">
     <meta name="project" content="TP I v0.1.0">
 
-    <title>HillClimbing and Iterated Local Search solver — TP I v0.1.0</title>
+    <title>HC and ILS solver — TP I v0.1.0</title>
     <link rel="stylesheet" href="dist/elixir-37545fd2f35b96531434.css" />
 
-    <script src="dist/sidebar_items-c020f77b37.js"></script>
+    <script src="dist/sidebar_items-2e6af491f8.js"></script>
 
       <script src="docs_config.js"></script>
 
@@ -79,12 +79,34 @@ TP I
   <div class="content-outer">
     <div id="content" class="content-inner">
 
-<h1>HillClimbing and Iterated Local Search solver</h1><p>This project is an academic implementation of both HillClimbing (HC) and Iterated Local Search (ILS) for meta-heuristics learning purposes.</p><p>Both heuristics benefits from shared <a href="Meta.Problem.html"><code class="inline">Meta.Problem</code></a> module and it's inner types.</p><p>Benchmarks were conducted using the <code class="inline">Meta.Functions.example_one</code> and <code class="inline">Meta.Functions.example_two</code> equations and more info is provided in the <a href="benchmarks.html">Benchmarks Page</a>.</p><p><a href="https://gfviegas.github.io/meta-hc-ils/">Full Documentation</a></p><h2 id="running" class="section-heading">
+<h1>HC and ILS solver</h1><p>This project is an academic implementation of both HillClimbing (HC) and Iterated Local Search (ILS) for meta-heuristics learning purposes.</p><p>Both heuristics benefits from shared <a href="Meta.Problem.html"><code class="inline">Meta.Problem</code></a> module and it's inner types.</p><p>Benchmarks were conducted using the <code class="inline">Meta.Functions.example_one</code> and <code class="inline">Meta.Functions.example_two</code> equations and more info is provided in the <a href="benchmarks.html">Benchmarks Page</a>.</p><p><a href="https://gfviegas.github.io/meta-hc-ils/">Full Documentation</a></p><h2 id="code-implementation-details" class="section-heading">
+  <a href="#code-implementation-details" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Code Implementation Details
+</h2>
+<p>The algorithms were implemented using the Elixir language in a Mix project environment and ex-docs documentation and an ExUnit testing framework.
+All code source is open-source in the <a href="https://github.com/gfviegas/meta-hc-ils">github repository</a>.</p><p>Also the <a href="https://gfviegas.github.io/meta-hc-ils/api-reference.html#modules">API Reference</a> displays all kind of details in modules and structs implemented, as well as the module doc tests.</p><p>Overall, the problems were implemented in a pure functional fashion using a <a href="https://hexdocs.pm/elixir/GenServer.html"><code class="inline">GenServer</code></a> and messages-to-self process for quick iteration and control over implementation. More details in the modules docs.</p><h2 id="running" class="section-heading">
   <a href="#running" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
   Running
 </h2>
 <p>A <code class="inline">Dockerfile</code> and <code class="inline">docker-compose.yml</code> files is provided in this project for quick setup and run:</p><pre><code class="makeup bash"><span class="">docker-compose run tp1
-</span></code></pre><p>The default entrypoint is the running of all benchmarks problems, which can then be further analysed in the <code class="inline">benchmarks/analysis.ipynb</code> notebook.</p>
+</span></code></pre><p>The default entrypoint is the running of all benchmarks problems, which can then be further analysed in the <code class="inline">benchmarks/analysis.ipynb</code> notebook.</p><p><a href="https://gfviegas.github.io/meta-hc-ils/">Full Documentation</a></p><h3 id="generating-docs" class="section-heading">
+  <a href="#generating-docs" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Generating Docs
+</h3>
+<p>With the Docker environment, to generate a docs folder with the ExDoc files is easy as</p><pre><code class="makeup bash"><span class="">docker-compose run tp1 mix docs --output docs
+</span></code></pre><h3 id="testing" class="section-heading">
+  <a href="#testing" class="hover-link"><span class="icon-link" aria-hidden="true"></span></a>
+  Testing
+</h3>
+<p>Automated test is also implemented in moduledocs test, and can be run with the command below:</p><pre><code class="makeup bash"><span class="">docker-compose run tp1 mix test
+</span></code></pre><p>Which will yield a result close to the one below:</p><pre><code class="makeup bash"><span class="">root@99e6f88b669d:/code# mix test
+</span><span class="">Compiling 10 files (.ex)
+</span><span class="">Generated code app
+</span><span class="">............
+</span><span class="">
+</span><span class="">Finished in 0.05 seconds (0.05s async, 0.00s sync)
+</span><span class="">12 doctests, 0 failures
+</span></code></pre>
 <div class="bottom-actions">
   <div class="bottom-actions-item">
 
